@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character encoding and responsive viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix-Style Chinese Sentence Trainer</title>
+    <!-- Link to CSS stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- 
+    Main container structure:
+    - Header: Title and controls
+    - Main: Sentences display area
+    - Footer: Translation bar (hidden until hover)
+    - Matrix background (behind content)
+    -->
+    <div class="container">
+        <header>
+            <!-- App title -->
+            <h1>Chinese Sentence Trainer</h1>
+            <!-- Control elements: shuffle button and dataset selector -->
+            <div class="controls">
+                <button id="shuffle-btn">Shuffle Bitch</button>
+                <select id="dataset-selector">
+                    <option value="sentences_hsk2.json" selected>HSK 2-3</option>
+                </select>
+            </div>
+        </header>
+        
+        <!-- 
+        Main content area:
+        - Will be populated with sentences by JavaScript
+        - Each sentence is a div.sentence
+        - Each character is a span.glyph
+        -->
+        <main id="sentence-container">
+            <!-- Sentences will be rendered here -->
+        </main>
+        
+        <!-- 
+        Translation footer:
+        - Hidden by default (CSS transform)
+        - Appears on character hover
+        - Shows pinyin and translation
+        -->
+        <footer id="translation-bar">
+            <div id="pinyin-display"></div>
+            <div id="translation-display"></div>
+        </footer>
+    </div>
+    
+    <!-- Matrix animation background container (styled and populated by JS) -->
+    <div class="matrix-bg"></div>
+    
+    <!-- 
+    JavaScript files:
+    1. dataService.js: Handles data loading and processing
+    2. uiService.js: Manages UI rendering and interactions
+    3. main.js: Application entry point and initialization
+    -->
+    <script src="js/dataService.js"></script>
+    <script src="js/uiService.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 

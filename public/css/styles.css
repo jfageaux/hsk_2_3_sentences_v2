@@ -1,0 +1,321 @@
+/* 
+ * CSS for Matrix-Style Chinese Sentence Trainer
+ *
+ * PSEUDOCODE/STRUCTURE:
+ * 1. Define variables for consistent colors and animations
+ * 2. Set base styles (reset, typography, layout)
+ * 3. Style containers and structure elements
+ * 4. Style header, controls, and UI elements
+ * 5. Define sentence and character (glyph) styling
+ * 6. Create hover effects and transitions
+ * 7. Style footer translation bar
+ * 8. Implement Matrix background effects
+ * 9. Add responsive design for different screen sizes
+ */
+
+:root {
+    /* Define Matrix theme color variables */
+    --matrix-green: #31ff4d;
+    --matrix-green-glow: #4cff79;
+    --matrix-dark: #000a00;
+    --transition-speed: 120ms;
+}
+
+/* Reset styles for consistent cross-browser rendering */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 
+ * Base body styling
+ * - Set font family with fallbacks
+ * - Black background with Matrix green text
+ * - Full height layout with flex positioning
+ */
+body {
+    font-family: "Source Han Sans", "Noto Sans SC", monospace, sans-serif;
+    background-color: black;
+    color: var(--matrix-green);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 
+ * Main container styling
+ * - Position above Matrix background (z-index)
+ * - Centered with max-width
+ * - Full height flex container
+ */
+.container {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 
+ * Header styling
+ * - Flex layout with space between elements
+ * - Responsive wrap for smaller screens
+ */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Page title with glow effect */
+h1 {
+    color: var(--matrix-green);
+    text-shadow: 0 0 10px var(--matrix-green-glow);
+    margin-bottom: 1rem;
+}
+
+/* 
+ * Controls container
+ * - Horizontal flex layout with spacing
+ */
+.controls {
+    display: flex;
+    gap: 1rem;
+}
+
+/* 
+ * Buttons and selects styling
+ * - Matrix-themed with hover effects
+ * - Consistent padding and border
+ */
+button, select {
+    background-color: rgba(0, 20, 0, 0.8);
+    color: var(--matrix-green);
+    border: 1px solid var(--matrix-green);
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+/* Hover effect for interactive elements */
+button:hover, select:hover {
+    background-color: rgba(49, 255, 77, 0.2);
+    box-shadow: 0 0 8px var(--matrix-green-glow);
+}
+
+/* 
+ * Main content area
+ * - Flex container for sentences
+ * - Takes remaining vertical space
+ */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+}
+
+/* 
+ * Sentence container
+ * - Flex layout with wrapping for characters
+ * - Centered alignment
+ */
+.sentence {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+/* 
+ * Individual Chinese character (glyph)
+ * - Large responsive font size
+ * - Smooth transitions for hover effects
+ * - Cursor indicates interactivity
+ */
+.glyph {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--matrix-green);
+    transition: transform var(--transition-speed), opacity var(--transition-speed), text-shadow var(--transition-speed);
+    cursor: pointer;
+    position: relative;
+}
+
+/* 
+ * Hover effect for characters
+ * - Scale up hovered character
+ * - Add glow effect
+ * - Bring to front with z-index
+ */
+.glyph:hover {
+    transform: scale(1.2);
+    text-shadow: 0 0 8px var(--matrix-green-glow);
+    z-index: 2;
+}
+
+/* 
+ * Effect for non-hovered siblings
+ * - Scale down and fade other characters
+ * - Creates focus on hovered character
+ */
+.sentence:hover .glyph:not(:hover) {
+    transform: scale(0.8);
+    opacity: 0.6;
+}
+
+/* 
+ * Pinyin tooltip styling
+ * - Positioned above character
+ * - Initially invisible (opacity 0)
+ * - Appears on hover (handled in .glyph:hover rule)
+ */
+.pinyin-tooltip {
+    position: absolute;
+    top: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 10, 0, 0.9);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity var(--transition-speed);
+    pointer-events: none;
+}
+
+/* Show tooltip on hover */
+.glyph:hover .pinyin-tooltip {
+    opacity: 1;
+}
+
+/* 
+ * Translation footer bar
+ * - Fixed at bottom of viewport
+ * - Initially translated down (hidden)
+ * - Slides up when active
+ * - Semi-transparent background
+ */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-family: monospace;
+    color: white;
+    transition: transform 0.3s;
+    transform: translateX(-50%) translateY(100%);
+}
+
+/* Slide footer up when active (shown) */
+footer.active {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 
+ * Matrix raining code background
+ * - Fixed position covering viewport
+ * - Below content (z-index)
+ */
+.matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* 
+ * Gradient overlay for Matrix background
+ * - Creates fade effect at bottom
+ * - Improves text readability
+ */
+.matrix-bg::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 10, 0, 0.8) 75%, 
+        rgba(0, 20, 0, 0.9) 100%);
+    z-index: 2;
+}
+
+/* 
+ * Matrix rain animation
+ * - Vertical movement from top to bottom
+ */
+@keyframes matrix-rain {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+/* 
+ * Matrix column styling
+ * - Columns of falling characters
+ * - Semi-transparent green text
+ * - Animation applied through JS
+ */
+.matrix-column {
+    position: absolute;
+    width: 20px;
+    top: -100%;
+    color: rgba(49, 255, 77, 0.5);
+    font-family: monospace;
+    font-size: 1.2rem;
+    animation: matrix-rain linear infinite;
+    text-align: center;
+}
+
+/* 
+ * Responsive design adjustments
+ * - Adapt layout for smaller screens
+ */
+@media (max-width: 768px) {
+    /* Stack header elements vertically */
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    /* Full width controls on mobile */
+    .controls {
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
+    /* Reduce spacing between characters */
+    .sentence {
+        gap: 0.3rem;
+    }
+} 
