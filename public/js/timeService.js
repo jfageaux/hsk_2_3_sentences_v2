@@ -21,6 +21,41 @@ const timeUnits = {
 };
 
 /**
+ * Converts any number to Chinese representation
+ * @param {number} num - The number to convert
+ * @returns {string} Chinese representation of the number
+ */
+function getChineseNumber(num) {
+    if (num <= 31) {
+        return chineseNumbers[num];
+    }
+    
+    // For numbers > 31, use the tens-ones format (e.g., 34 = 三十四)
+    const tens = Math.floor(num / 10);
+    const ones = num % 10;
+    
+    let result = '';
+    
+    // Add tens digit (二十, 三十, 四十, 五十)
+    if (tens === 2) {
+        result = '二十';
+    } else if (tens === 3) {
+        result = '三十';
+    } else if (tens === 4) {
+        result = '四十';
+    } else if (tens === 5) {
+        result = '五十';
+    }
+    
+    // Add ones digit if not zero
+    if (ones > 0) {
+        result += chineseNumbers[ones];
+    }
+    
+    return result;
+}
+
+/**
  * Updates the Chinese clock display
  */
 function updateChineseClock() {
@@ -31,9 +66,9 @@ function updateChineseClock() {
     
     // Format: 十一点三十分二十秒 (11:30:20)
     const chineseTime = 
-        chineseNumbers[hours] + timeUnits.hour + 
-        chineseNumbers[minutes] + timeUnits.minute + 
-        chineseNumbers[seconds] + timeUnits.second;
+        getChineseNumber(hours) + timeUnits.hour + 
+        getChineseNumber(minutes) + timeUnits.minute + 
+        getChineseNumber(seconds) + timeUnits.second;
     
     document.getElementById('chinese-clock').textContent = chineseTime;
 }
