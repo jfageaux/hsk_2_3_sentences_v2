@@ -17,9 +17,11 @@
     - Matrix background (behind content)
     -->
     <div class="container">
-        <!-- Clock in top left and date in top right -->
-        <div id="chinese-clock" class="clock-display"></div>
-        <div id="chinese-date" class="date-display"></div>
+        <!-- Time display section - added -->
+        <div class="time-container">
+            <div id="chinese-clock"></div>
+            <div id="chinese-date"></div>
+        </div>
         
         <header>
             <!-- App title -->
@@ -63,11 +65,11 @@
     1. dataService.js: Handles data loading and processing
     2. uiService.js: Manages UI rendering and interactions
     3. main.js: Application entry point and initialization
-    4. chineseDateTime.js: Handles Chinese clock and date display
     -->
     <script src="js/dataService.js"></script>
     <script src="js/uiService.js"></script>
-    <script src="js/chineseDateTime.js"></script>
     <script src="js/main.js"></script>
+    <!-- New script for time functions -->
+    <script src="js/timeService.js"></script>
 </body>
 </html> 

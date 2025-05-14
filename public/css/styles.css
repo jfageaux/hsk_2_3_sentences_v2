@@ -29,31 +29,6 @@
 }
 
 /* 
- * Chinese Clock and Date displays
- * - Fixed positions in top corners
- * - Matrix theme styling
- */
-.clock-display, .date-display {
-    position: fixed;
-    z-index: 20;
-    font-family: "Source Han Sans", "Noto Sans SC", monospace, sans-serif;
-    color: var(--matrix-green);
-    text-shadow: 0 0 8px var(--matrix-green-glow);
-    padding: 1rem;
-    font-size: 1.5rem;
-}
-
-.clock-display {
-    top: 0;
-    left: 0;
-}
-
-.date-display {
-    top: 0;
-    right: 0;
-}
-
-/* 
  * Base body styling
  * - Set font family with fallbacks
  * - Black background with Matrix green text
@@ -85,6 +60,32 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+/* 
+ * Time container styling
+ * - Display clock on left and date on right
+ * - Matrix-themed with glow effect
+ */
+.time-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+#chinese-clock {
+    font-size: 1.5rem;
+    color: var(--matrix-green);
+    text-shadow: 0 0 5px var(--matrix-green-glow);
+}
+
+#chinese-date {
+    font-size: 1.5rem;
+    color: var(--matrix-green);
+    text-shadow: 0 0 5px var(--matrix-green-glow);
+    text-align: right;
 }
 
 /* 
@@ -343,5 +344,16 @@ footer.active {
     /* Reduce spacing between characters */
     .sentence {
         gap: 0.3rem;
+    }
+    
+    /* Adjust time container for mobile */
+    .time-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    #chinese-date {
+        text-align: left;
     }
 } 
