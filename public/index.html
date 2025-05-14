@@ -17,6 +17,10 @@
     - Matrix background (behind content)
     -->
     <div class="container">
+        <!-- Clock in top left and date in top right -->
+        <div id="chinese-clock" class="clock-display"></div>
+        <div id="chinese-date" class="date-display"></div>
+        
         <header>
             <!-- App title -->
             <h1>Chinese Sentence Trainer</h1>
@@ -28,12 +32,6 @@
                 </select>
             </div>
         </header>
-        
-        <!-- Clock and date display in Chinese -->
-        <div id="chinese-clock">
-            <div id="date-display"></div>
-            <div id="time-display"></div>
-        </div>
         
         <!-- 
         Main content area:
@@ -64,12 +62,12 @@
     JavaScript files:
     1. dataService.js: Handles data loading and processing
     2. uiService.js: Manages UI rendering and interactions
-    3. chineseClock.js: Handles Chinese clock functionality
-    4. main.js: Application entry point and initialization
+    3. main.js: Application entry point and initialization
+    4. chineseDateTime.js: Handles Chinese clock and date display
     -->
     <script src="js/dataService.js"></script>
     <script src="js/uiService.js"></script>
-    <script src="js/chineseClock.js"></script>
+    <script src="js/chineseDateTime.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html> 

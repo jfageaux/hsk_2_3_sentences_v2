@@ -29,6 +29,31 @@
 }
 
 /* 
+ * Chinese Clock and Date displays
+ * - Fixed positions in top corners
+ * - Matrix theme styling
+ */
+.clock-display, .date-display {
+    position: fixed;
+    z-index: 20;
+    font-family: "Source Han Sans", "Noto Sans SC", monospace, sans-serif;
+    color: var(--matrix-green);
+    text-shadow: 0 0 8px var(--matrix-green-glow);
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+.clock-display {
+    top: 0;
+    left: 0;
+}
+
+.date-display {
+    top: 0;
+    right: 0;
+}
+
+/* 
  * Base body styling
  * - Set font family with fallbacks
  * - Black background with Matrix green text
@@ -73,27 +98,6 @@ header {
     align-items: center;
     margin-bottom: 2rem;
     flex-wrap: wrap;
-}
-
-/* Chinese clock and date display */
-#chinese-clock {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-#date-display, #time-display {
-    font-size: 1.5rem;
-    color: var(--matrix-green);
-    text-shadow: 0 0 5px var(--matrix-green-glow);
-    margin-bottom: 0.5rem;
-}
-
-#time-display {
-    font-size: 2rem;
-    font-weight: bold;
 }
 
 /* Page title with glow effect */
