@@ -75,6 +75,27 @@ header {
     flex-wrap: wrap;
 }
 
+/* Chinese clock and date display */
+#chinese-clock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#date-display, #time-display {
+    font-size: 1.5rem;
+    color: var(--matrix-green);
+    text-shadow: 0 0 5px var(--matrix-green-glow);
+    margin-bottom: 0.5rem;
+}
+
+#time-display {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
 /* Page title with glow effect */
 h1 {
     color: var(--matrix-green);

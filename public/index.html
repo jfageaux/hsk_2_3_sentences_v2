@@ -29,6 +29,12 @@
             </div>
         </header>
         
+        <!-- Clock and date display in Chinese -->
+        <div id="chinese-clock">
+            <div id="date-display"></div>
+            <div id="time-display"></div>
+        </div>
+        
         <!-- 
         Main content area:
         - Will be populated with sentences by JavaScript
@@ -58,10 +64,12 @@
     JavaScript files:
     1. dataService.js: Handles data loading and processing
     2. uiService.js: Manages UI rendering and interactions
-    3. main.js: Application entry point and initialization
+    3. chineseClock.js: Handles Chinese clock functionality
+    4. main.js: Application entry point and initialization
     -->
     <script src="js/dataService.js"></script>
     <script src="js/uiService.js"></script>
+    <script src="js/chineseClock.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html> 
